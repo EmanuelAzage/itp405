@@ -21,11 +21,12 @@ class TracksController extends Controller
         ->join('artists', 'albums.ArtistId', '=', 'artists.ArtistId')
         ->where('genres.Name', '=', $genre_name)
         ->get();
+        
     } else {
       $tracks = [];
     }
 
-    return view('genre.tracks', [
+    return view('track.index', [
       'tracks' => $tracks
     ]);
   }

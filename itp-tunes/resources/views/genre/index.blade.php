@@ -3,17 +3,16 @@
 @section('title', 'Genres')
 
 @section('main')
-  <div class="row">
-    <div class="col-3">
-      <ul>
+  <table class="table">
         @forelse($genres as $genre)
-          <li>
-            <a href='/tracks?genre={{$genre->Name}}'>{{$genre->Name}}</a>
-          </li>
+          <tr>
+            <td>
+              <a href='/tracks?genre={{urlencode($genre->Name)}}'>{{$genre->Name}}</a>
+            </td>
+          </tr>
         @empty
-          <li>No Genres</li>
+          <tr><td>No Genres</td></tr>
         @endforelse
       </ul>
-    </div>
-  </div>
+  </table>
 @endsection

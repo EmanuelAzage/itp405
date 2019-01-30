@@ -18,7 +18,7 @@
         <td>{{$track->track_price}}</td>
       </tr>
     @empty
-      <li>No Tracks</li>
+      <tr><td>No Tracks</td></tr>
     @endforelse
   </table>
 
