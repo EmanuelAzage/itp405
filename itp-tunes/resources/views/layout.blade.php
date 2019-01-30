@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 </head>
 <body>
-  @yield('main')
+  <div class="container-fluid">
+    @yield('main')
+  </div>
 </body>
 </html>
