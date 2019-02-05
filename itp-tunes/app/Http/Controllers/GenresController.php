@@ -15,4 +15,34 @@ class GenresController extends Controller
     ]);
   }
 
+  public function edit($genreId = null){
+
+    if($genreId){
+      $genres = DB::table('genres')
+      ->where("genreId", "=", genreId)
+      ->first();
+
+      return view("genre.edit", [
+
+      ]);
+    }
+
+    redirect("/genres")
+  }
+
+  public function update($genreId = null){
+
+    if($genreId){
+      $genres = DB::table('genres')
+      ->where("genreId", "=", genreId)
+      ->first();
+
+      return view("genre.edit", [
+
+      ]);
+    }
+
+    redirect("/genres")
+  }
+
 }
