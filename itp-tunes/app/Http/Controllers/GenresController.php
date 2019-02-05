@@ -31,7 +31,7 @@ class GenresController extends Controller
 
     }
 
-    redirect("/genres");
+    return redirect("/genres");
   }
 
   public function update($genreId = null, Request $request){
@@ -53,11 +53,9 @@ class GenresController extends Controller
       $genre = DB::table('genres')
       ->where("GenreId", "=", $genreId)
       ->update(['Name' => $input['name']]);
-
-      redirect("/genres");
     }
 
-    redirect("/genres");
+    return redirect("/genres");
   }
 
 }
