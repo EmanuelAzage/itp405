@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Validator;
 
 class GenresController extends Controller
 {
@@ -18,31 +19,45 @@ class GenresController extends Controller
   public function edit($genreId = null){
 
     if($genreId){
-      $genres = DB::table('genres')
-      ->where("genreId", "=", genreId)
-      ->first();
+
+      $genre = DB::table('genres')
+      ->where("GenreId", "=", $genreId)
+      ->first()->Name;
 
       return view("genre.edit", [
-
+        'genre_id' => $genreId,
+        'genre_name' => $genre
       ]);
+
     }
 
-    redirect("/genres")
+    redirect("/genres");
   }
 
-  public function update($genreId = null){
+  public function update($genreId = null, Request $request){
 
     if($genreId){
-      $genres = DB::table('genres')
-      ->where("genreId", "=", genreId)
-      ->first();
 
-      return view("genre.edit", [
+      $input = $request->all();
 
+      $validation = Validator::make($input, [
+        'name' => 'required|min:3|unique:genres,Name'
       ]);
+
+      if ($validation->fails()){
+        return redirect('/genres/' . $genreId . '/edit')
+        ->withInput($input)
+        ->withErrors($validation);
+      }
+
+      $genre = DB::table('genres')
+      ->where("GenreId", "=", $genreId)
+      ->update(['Name' => $input['name']]);
+
+      redirect("/genres");
     }
 
-    redirect("/genres")
+    redirect("/genres");
   }
 
 }
