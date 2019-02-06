@@ -67,7 +67,7 @@
 
         <div class="form-group">
           <label for="unit_price">Unit Price</label>
-          <input type="number" name="unit_price" class="form-control" value="{{old('unit_price')}}">
+          <input type="number" name="unit_price" class="form-control" value="{{old('unit_price')}}" step=".01">
           <small class="text-danger">{{$errors->first('unit_price')}}</small>
         </div>
 

@@ -68,20 +68,20 @@ class TracksController extends Controller
     }
 
     // get Genre, Album, MediaType Id
-    $genreId = DB::table('genres')->where('Name', '=', $input->genre)->get()->GenreId;
-    $albumId = DB::table('albums')->where('Title', '=', $input->album)->get()->AlbumId;
-    $mediaTypeId = DB::table('media_types')->where('Name', '=', $input->media_type)->get()->MediaTypeId;
+    $genreId = DB::table('genres')->where('Name', '=', $input['genre'])->get()[0]->GenreId;
+    $albumId = DB::table('albums')->where('Title', '=', $input['album'])->get()[0]->AlbumId;
+    $mediaTypeId = DB::table('media_types')->where('Name', '=', $input['media_type'])->get()[0]->MediaTypeId;
 
     // add to database
     DB::table('tracks')->insert(
-      ['Name' => $input->name,
+      ['Name' => $input['name'],
        'AlbumId' => $albumId,
        'MediaTypeId' => $mediaTypeId,
        'GenreId' => $genreId,
-       'Composer' => $input->composer,
-       'Milliseconds' => $input->milliseconds,
-       'Bytes' => $input->bytes,
-       'UnitPrice' => $input->unit_price
+       'Composer' => $input['composer'],
+       'Milliseconds' => $input['milliseconds'],
+       'Bytes' => $input['bytes'],
+       'UnitPrice' => $input['unit_price']
       ]
     );
 
