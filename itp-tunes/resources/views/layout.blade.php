@@ -14,8 +14,17 @@
         <a class="navbar-brand" href="/">ITP Tunes</a>
       </div>
       <ul class="nav navbar-nav">
-        <li {{strpos(Request::url(), 'genres') ? "class=active" : ""}}><a href="/genres">Genres</a></li>
-        <li {{strpos(Request::url(), 'tracks') ? "class=active" : ""}}><a href="/tracks">Tracks</a></li>
+        @if (Auth::check())
+          <li {{strpos(Request::url(), 'genres') ? "class=active" : ""}}><a href="/genres">Genres</a></li>
+          <li {{strpos(Request::url(), 'tracks') ? "class=active" : ""}}><a href="/tracks">Tracks</a></li>
+          <li {{strpos(Request::url(), 'invoices') ? "class=active" : ""}}><a href="/invoices">Invoices</a></li>
+          <li ><a href="/logout">logout</a></li>
+          <li ><a href="/settings">settings</a></li>
+        @else
+          <li {{strpos(Request::url(), 'login') ? "class=active" : ""}}><a href="/login">login</a></li>
+          <li {{strpos(Request::url(), 'signup') ? "class=active" : ""}}><a href="/signup">signup</a></li>
+        @endif
+
       </ul>
     </div>
   </nav>
