@@ -20,9 +20,9 @@
   connection.onmessage = (event) => {
     console.log(`recieved message: ${event.data}`);
     let div = document.getElementById('doc');
-    div.innerHTML = event.data;
-    // div.selectionStart = div.selectionEnd = div.innerHTML.length;
-    console.log(div.childNodes);
+    if (div.innerHTML != event.data){ // the div body recieved is different
+      div.innerHTML = event.data;
+    }
   };
 
   document.getElementById('doc').addEventListener('input', (event) => {
